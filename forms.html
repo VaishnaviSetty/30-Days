@@ -80,14 +80,15 @@ h1, h2 {
 
     <h2>All Exercise Sheets</h2>
 
-    <img src="images/exercise_forms/batch1.png" class="sheet">
-    <img src="images/exercise_forms/batch2.png" class="sheet">
-    <img src="images/exercise_forms/batch3.png" class="sheet">
-    <img src="images/exercise_forms/batch4.png" class="sheet">
-    <img src="images/exercise_forms/batch5.png" class="sheet">
-    <img src="images/exercise_forms/batch6.png" class="sheet">
-    <img src="images/exercise_forms/batch7.png" class="sheet">
-    <img src="images/exercise_forms/batch8.png" class="sheet">
+    <!-- Updated paths -->
+    <img src="images/exercise_forms/images/exerciseforms/batch1.png" class="sheet">
+    <img src="images/exercise_forms/images/exerciseforms/batch2.png" class="sheet">
+    <img src="images/exercise_forms/images/exerciseforms/batch3.png" class="sheet">
+    <img src="images/exercise_forms/images/exerciseforms/batch4.png" class="sheet">
+    <img src="images/exercise_forms/images/exerciseforms/batch5.png" class="sheet">
+    <img src="images/exercise_forms/images/exerciseforms/batch6.png" class="sheet">
+    <img src="images/exercise_forms/images/exerciseforms/batch7.png" class="sheet">
+    <img src="images/exercise_forms/images/exerciseforms/batch8.png" class="sheet">
 
 </div>
 
@@ -105,14 +106,14 @@ function downloadFormsPDF() {
     });
 
     const sheets = [
-        {src:"images/exercise_forms/batch1.png", title:"Batch 1 – Warm-up"},
-        {src:"images/exercise_forms/batch2.png", title:"Batch 2 – Lower Body"},
-        {src:"images/exercise_forms/batch3.png", title:"Batch 3 – Glutes"},
-        {src:"images/exercise_forms/batch4.png", title:"Batch 4 – Cardio"},
-        {src:"images/exercise_forms/batch5.png", title:"Batch 5 – Upper Body"},
-        {src:"images/exercise_forms/batch6.png", title:"Batch 6 – Yoga & Flow"},
-        {src:"images/exercise_forms/batch7.png", title:"Batch 7 – Core & Stability"},
-        {src:"images/exercise_forms/batch8.png", title:"Batch 8 – Additional Moves"}
+        {src:"images/exercise_forms/images/exerciseforms/batch1.png", title:"Batch 1 – Warm-up"},
+        {src:"images/exercise_forms/images/exerciseforms/batch2.png", title:"Batch 2 – Lower Body"},
+        {src:"images/exercise_forms/images/exerciseforms/batch3.png", title:"Batch 3 – Glutes"},
+        {src:"images/exercise_forms/images/exerciseforms/batch4.png", title:"Batch 4 – Cardio"},
+        {src:"images/exercise_forms/images/exerciseforms/batch5.png", title:"Batch 5 – Upper Body"},
+        {src:"images/exercise_forms/images/exerciseforms/batch6.png", title:"Batch 6 – Yoga & Flow"},
+        {src:"images/exercise_forms/images/exerciseforms/batch7.png", title:"Batch 7 – Core & Stability"},
+        {src:"images/exercise_forms/images/exerciseforms/batch8.png", title:"Batch 8 – Additional Moves"}
     ];
 
     let load = sheets.map(data => new Promise(resolve => {
@@ -144,10 +145,6 @@ function downloadFormsPDF() {
 
         pdf.save("Exercise-Forms.pdf");
     });
-}
-
-function downloadDaywisePDF() {
-    alert("Day-wise PDF system is ready to add whenever your daily content is finalized!");
 }
 </script>
 
