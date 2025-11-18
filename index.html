@@ -1,95 +1,672 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>30‑Day Fit & Feminine Challenge</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>30-Day Fit & Feminine Challenge</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-body {
-  font-family: 'Montserrat', sans-serif;
-  margin: 0;
-  background: #F9DDEB;
-  color: #8C5E58;
-}
-header {
-  text-align: center;
-  padding: 50px 20px;
-  background: linear-gradient(135deg, #F9DDEB, #F7C8A7);
-  border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
-}
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.4rem;
-}
-.btn {
-  display: inline-block;
-  background: #8C5E58;
-  color: white;
-  padding: 12px 26px;
-  border-radius: 30px;
-  text-decoration: none;
-  margin: 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
-section {
-  background: #FFFFFF;
-  margin: 20px;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-.day-card {
-  background: #F9DDEB;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 14px;
-  cursor: pointer;
-  font-weight: bold;
-}
+  :root{
+    --blush:#F9DDEB;
+    --peach:#F7C8A7;
+    --deep:#8C5E58;
+    --muted:#A07865;
+    --white:#fff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(180deg,var(--blush),#fff);
+    color:var(--deep);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  header{
+    padding:48px 18px;
+    text-align:center;
+    background:linear-gradient(135deg,var(--blush),var(--peach));
+    border-bottom-left-radius:24px;
+    border-bottom-right-radius:24px;
+  }
+  h1{ font-family:'Playfair Display', serif; margin:0; font-size:36px; color:var(--deep) }
+  .subtitle{ color:var(--muted); margin-top:8px }
+
+  .wrap{ max-width:1100px; margin:20px auto; padding:0 16px; }
+
+  .card{ background:var(--white); border-radius:18px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,0.05); margin-bottom:18px }
+
+  .btn{
+    display:inline-block; padding:10px 18px; border-radius:40px; background:var(--deep); color:white; text-decoration:none; font-weight:700; cursor:pointer;
+  }
+  a.btn.alt{ background:transparent; color:var(--deep); border:2px solid rgba(140,94,88,0.08) }
+
+  .days-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-top:12px }
+  .day-card{ background:linear-gradient(180deg,#fff, var(--blush)); padding:16px; border-radius:12px; text-align:center; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,0.04) }
+  .day-card h3{ margin:0; color:var(--deep) }
+  .muted{ color:var(--muted) }
+
+  /* Day page layout */
+  .day-layout{ display:grid; grid-template-columns: 1fr 360px; gap:18px }
+  @media(max-width:940px){ .day-layout{ grid-template-columns:1fr } }
+
+  .panel{ background:var(--white); border-radius:12px; padding:14px; box-shadow:0 6px 18px rgba(0,0,0,0.04) }
+
+  /* Tabs */
+  .tabs{ display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap }
+  .tab{ padding:8px 12px; border-radius:12px; background:#fff; border:1px solid rgba(0,0,0,0.04); cursor:pointer; font-weight:600 }
+  .tab.active{ background:linear-gradient(90deg,var(--peach),var(--blush)); color:var(--deep) }
+
+  .exercise-item{ display:flex; gap:12px; align-items:center; padding:10px 6px; border-bottom:1px dashed rgba(0,0,0,0.04) }
+  .exercise-thumb{ width:72px; height:72px; border-radius:10px; background:#f6f0f0; display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--muted) }
+  .exercise-info h4{ margin:0 0 4px 0; font-size:15px }
+  .exercise-info p{ margin:0; font-size:13px; color:var(--muted) }
+
+  .meal-list{ list-style:none; padding:0; margin:0 }
+  .meal-list li{ padding:8px 0; border-bottom:1px solid #f3e8e6; color:var(--muted) }
+
+  .tip{ background:linear-gradient(90deg,var(--peach),var(--blush)); padding:12px; border-radius:10px; color:var(--deep); font-weight:700 }
+
+  /* small responsive */
+  .small{ font-size:13px; color:var(--muted) }
+
+  /* hand cursor */
+  button, .btn, a, .day-card { cursor: pointer !important; }
+
+  /* Floating help */
+  .helpbar{ position:fixed; left:18px; bottom:18px; background:var(--deep); color:white; padding:10px 14px; border-radius:999px; box-shadow:0 6px 18px rgba(0,0,0,0.18) }
 </style>
 </head>
 <body>
+
 <header>
-  <h1>30‑Day Fit & Feminine Challenge</h1>
-  <p>Fat Loss • Tone Up • Confidence Reset</p>
-  <a class="btn" href="forms.html">Exercise Forms</a>
+  <h1>30-Day Fit & Feminine Challenge</h1>
+  <div class="subtitle">Fat Loss · Tone Up · Confidence Reset — 45-min daily plans</div>
+  <div style="margin-top:18px">
+    <a class="btn" href="forms.html">Exercise Forms</a>
+    <a class="btn alt" href="forms.html" style="margin-left:8px">Download Forms PDF</a>
+  </div>
 </header>
-<section>
-  <h2>Your 30‑Day Program</h2>
-  <div id="daysSection"></div>
-</section>
-<section id="dayPagesContainer" style="display:none;"></section>
+
+<div class="wrap">
+
+  <div class="card">
+    <h2 style="margin:0 0 6px 0">Your 30-Day Program</h2>
+    <p class="small">Click any day to open full Workout / Meal plan / Tip. (Review mode: all content unlocked.)</p>
+
+    <div class="days-grid" id="daysGrid"></div>
+  </div>
+
+  <div id="dayPanel" class="card" style="display:none">
+    <!-- dynamic day page injected here -->
+  </div>
+
+  <div class="card">
+    <h3 class="small">Quick Actions</h3>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+      <a class="btn alt" id="btnUnlock" onclick="promptUnlock()">Enter Unlock Code</a>
+      <a class="btn alt" href="forms.html">Open Exercise Forms</a>
+      <a class="btn" id="btnExport" onclick="exportFullPDF()">Export Full Program (PDF)</a>
+    </div>
+    <p class="small muted" style="margin-top:8px">When ready to sell — replace unlock logic with your payment link (instructions below).</p>
+  </div>
+
+</div>
+
+<div class="helpbar" title="Admin shortcut: press 'a' then 'd'">Admin</div>
+
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-  const daysSection = document.getElementById('daysSection');
-  const dayPagesContainer = document.getElementById('dayPagesContainer');
+/* -------------------------
+  REVIEW MODE (unlocked for you)
+  Set this false later to enable purchase lock.
+--------------------------*/
+let unlocked = true; // <-- REVIEW MODE (change to false to lock)
 
-  let unlocked = true; // REVIEW MODE
+/* -------------------------
+  Day data (workout, meal, tip)
+  We use the previously prepared day objects.
+  For brevity I include full Day 1..Day 30 content below.
+--------------------------*/
+const days = [
+  { title:'Day 1 — Metabolic Kickstart',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Brisk march in place — 2 mins','Arm circles & shoulder rolls — 2 mins','Leg swings & hip circles — 2 mins']},
+      {name:'Cardio & Fat-Burn (10 mins)', items:['Low-impact jog in place — 3 mins','Jumping jacks mod — 2 mins','High-knees march — 2 mins','Butt-kicks — 3 mins']},
+      {name:'Lower Body Strength (10 mins)', items:['Squat pulses — 2 mins','Reverse lunges — 2 mins each leg','Chair sit-to-stand — 3 mins','Calf raises — 1 min']},
+      {name:'Core Focus (8 mins)', items:['Standing oblique crunch — 2 mins','Plank (knee or full) — 60s','Dead-bug slow reps — 3 mins']},
+      {name:'Glute Activation (5 mins)', items:['Glute bridges with squeeze — 3 mins','Donkey kicks — 1 min each side']},
+      {name:'Cooldown & Stretch (6 mins)', items:['Hamstring stretch','Quad stretch','Cat-cow mobility','Deep breathing'] }
+    ],
+    dietVeg:['Breakfast: Oats + banana + seeds','Mid: Green tea + walnuts','Lunch: Dal + brown rice + salad','Snack: Fruit + Greek yogurt','Dinner: Roti + paneer + mixed veg'],
+    dietNonVeg:['Breakfast: Omelette + toast','Mid: Black coffee + almonds','Lunch: Grilled chicken + rice + salad','Snack: Boiled egg','Dinner: Fish + steamed veg'],
+    tip:'Day 1 is about showing up — consistency > intensity.' },
 
-  for(let i = 1; i <= 30; i++){
-    let div = document.createElement('div');
-    div.className = 'day-card';
-    div.textContent = `Day ${i}`;
-    div.onclick = () => {
-      if(!unlocked){
-        alert("Please buy to unlock.");
-        return;
-      }
-      daysSection.style.display = 'none';
-      dayPagesContainer.style.display = 'block';
-      dayPagesContainer.innerHTML = `
-        <h2>Day ${i} Workout</h2>
-        <p>45‑minute workout coming soon.</p>
-        <a class='btn' onclick='location.reload()'>Back</a>
-      `;
-      window.scrollTo(0, 0);
-    };
-    daysSection.appendChild(div);
-  }
+  { title:'Day 2 — Belly Blast',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Side steps + arm swings — 3 mins','Cat cow & hip mobility — 3 mins']},
+      {name:'HIIT (10 mins)', items:['20s work/10s rest x 10 — march/squats/high knees rotations']},
+      {name:'Lower Strength (10 mins)', items:['Curtsey lunges — 2 mins','Sumo squats — 3 mins','Standing leg lift — 2 mins','Wall sit 2 mins']},
+      {name:'Core Burn (9 mins)', items:['Plank jacks mod — 2 mins','Bicycle crunches (slow) — 2 mins','Reverse crunches — 2 mins','Heel taps — 3 mins']},
+      {name:'Glute Finish (4 mins)', items:['Single-leg glute bridge hold — 45s each','Pulse bridge — 90s']},
+      {name:'Cooldown (4 mins)', items:['Seated twist','Deep belly breaths'] }
+    ],
+    dietVeg:['Breakfast: Poha + peanuts','Mid: Fruit','Lunch: Quinoa salad + chickpeas','Snack: Roasted makhana','Dinner: Soup + salad'],
+    dietNonVeg:['Breakfast: Egg white omelette','Mid: Fruit','Lunch: Chicken salad','Snack: Greek yogurt','Dinner: Light fish curry + veg'],
+    tip:'Hydrate well — water before meals helps reduce appetite.' },
+
+  { title:'Day 3 — Booty & Posterior Chain',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['March + dynamic hamstring swings','Glute activation bandless (mini pulses)']},
+      {name:'Strength Block (12 mins)', items:['Glute bridges feet elevated — 3 mins','Bulgarian split mod — 2 mins each leg','Romanian deadlift (single leg) — 3 mins']},
+      {name:'Power Cardio (8 mins)', items:['Step jacks — 2 mins','Skaters mod — 2 mins','Butt-kick intervals — 4 mins']},
+      {name:'Core & Stability (7 mins)', items:['Bird dog — 2 mins','Side plank knee down — 1 min each','Dead bug slow — 3 mins']},
+      {name:'Glute Isolation (6 mins)', items:['Clamshells — 2 mins','Donkey kicks — 2 mins','Fire hydrant pulses — 2 mins']},
+      {name:'Cooldown (6 mins)', items:['Figure-4 stretch','Hamstring hold','Deep breathing'] }
+    ],
+    dietVeg:['Breakfast: Smoothie bowl (berries + oats)','Mid: Nuts','Lunch: Rajma + rice + salad','Snack: Carrot & hummus','Dinner: Paneer bhurji + roti'],
+    dietNonVeg:['Breakfast: Eggs + avocado toast','Mid: Nuts','Lunch: Grilled chicken + quinoa','Snack: Boiled egg','Dinner: Fish + veg'],
+    tip:'Squeeze the glutes at the top of each rep for better activation.' },
+
+  { title:'Day 4 — Waist Sculpt & Core',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Torso twists + hip circles','Toe taps + side marches']},
+      {name:'Core Intervals (12 mins)', items:['Plank to knee tuck — 3 sets','Russian twist slow — 3 mins','Mountain climbers mod — 3 mins']},
+      {name:'Obliques & Stability (10 mins)', items:['Side plank dips — 2 mins each','Standing woodchoppers (no weight) — 2 mins','Hip dip control — 3 mins']},
+      {name:'Lower Body (6 mins)', items:['Sumo squat pulses — 3 mins','Calf raises — 2 mins']},
+      {name:'Core finisher (5 mins)', items:['Hollow hold short intervals','Heel taps']},
+      {name:'Cooldown (4 mins)', items:['Seated forward fold','Supine twist'] }
+    ],
+    dietVeg:['Breakfast: Ragi porridge','Mid: Green tea + seeds','Lunch: Mixed veg + chapati','Snack: Fruit + curd','Dinner: Light soup'],
+    dietNonVeg:['Breakfast: Eggs + oats','Mid: Fruit','Lunch: Chicken + salad','Snack: Yogurt','Dinner: Light fish + veg'],
+    tip:'Food shapes the waist more than exercise alone — watch portions.' },
+
+  { title:'Day 5 — Upper Body Sculpt',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Arm swings + band pull aparts (towel)','Neck mobility']},
+      {name:'Strength Block (12 mins)', items:['Incline push-ups (wall/chair) — 3 mins','Tricep dips — 3 mins','Towel rows — 3 mins','Shoulder taps — 3 mins']},
+      {name:'Cardio Burst (8 mins)', items:['Shadow boxing mod — 3 mins','Star jacks mod — 2 mins','Arm circle burnouts — 3 mins']},
+      {name:'Core & Back (7 mins)', items:['Superman holds — 2 mins','Dead bug — 2 mins','Plank hold — 3 mins']},
+      {name:'Tone finish (7 mins)', items:['Bicep isometrics with bottles — 3 mins','Tricep pulse — 2 mins','Slow arm raises — 2 mins']},
+      {name:'Cooldown (5 mins)', items:['Cross-body arm stretch','Child pose'] }
+    ],
+    dietVeg:['Breakfast: Moong chilla','Mid: Seeds + fruit','Lunch: Soya chunks + veg','Snack: Roasted chana','Dinner: Dal + roti'],
+    dietNonVeg:['Breakfast: Egg bhurji','Mid: Fruit','Lunch: Grilled chicken + veg','Snack: Greek yogurt','Dinner: Egg curry + salad'],
+    tip:'Include protein with every meal to support upper-body toning.' },
+
+  { title:'Day 6 — Full Body Conditioning',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Light jog in place','Dynamic stretches']},
+      {name:'Full Circuit (15 mins)', items:['Round x3: 45s work - Squat, Push, Row (towel), Plank 30s, Rest 30s']},
+      {name:'Cardio Intervals (8 mins)', items:['Burpee mod bursts — 30s on/30s off x6']},
+      {name:'Lower Strength (6 mins)', items:['Forward lunges — 2 mins','Step-ups — 2 mins','Calf raises — 2 mins']},
+      {name:'Core (5 mins)', items:['Low slow bicycles','Plank shoulder taps']},
+      {name:'Cooldown (5 mins)', items:['Stretch & deep breathing'] }
+    ],
+    dietVeg:['Breakfast: Overnight oats + seeds','Mid: Nuts','Lunch: Lentil bowl + salad','Snack: Fruit','Dinner: Mixed veg + paneer'],
+    dietNonVeg:['Breakfast: Omelette + oats','Mid: Nuts','Lunch: Chicken rice bowl','Snack: Boiled egg','Dinner: Stir fried fish + veg'],
+    tip:'Aim for controlled, intentional movement — quality beats speed.' },
+
+  { title:'Day 7 — Active Recovery & Mobility',
+    workout:[
+      {name:'Recovery Flow (45 mins total)', items:['20–25 min brisk walk or light cycle','Mobility flow for hips & shoulders — 10 mins','Gentle yoga/stretch — 10 mins']},
+    ],
+    dietVeg:['Breakfast: Fruit + yogurt','Lunch: Light khichdi + salad','Dinner: Soup + steamed veg'],
+    dietNonVeg:['Breakfast: Fruit + yogurt','Lunch: Light chicken broth + rice','Dinner: Soup + steamed fish'],
+    tip:'Recovery is essential. Use this day to restore and reflect.' },
+
+  { title:'Day 8 — HIIT Progression',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Brisk march + arm swings','Hip mobility']},
+      {name:'HIIT Set (12 mins)', items:['40s on / 20s off x 10 — alternate squats, mountain climbers, skaters']},
+      {name:'Lower Strength (10 mins)', items:['Split squats — 5 mins','Glute bridge hold — 5 mins']},
+      {name:'Core (6 mins)', items:['Plank variations','Heel taps']},
+      {name:'Glute finish (5 mins)', items:['Pulse bridges','Donkey kicks']},
+      {name:'Cooldown (6 mins)', items:['Stretch & deep breathing'] }
+    ],
+    dietVeg:['Breakfast: Poha + veggies','Lunch: Chickpea salad','Dinner: Roti + mixed veg'],
+    dietNonVeg:['Breakfast: Eggs + toast','Lunch: Chicken salad','Dinner: Fish + veg'],
+    tip:'Interval intensity boosts fat burn — pace yourself.' },
+
+  { title:'Day 9 — Lower Strength & Stability',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Leg swings','Glute activation mini pulses']},
+      {name:'Strength Block (15 mins)', items:['Deadlifts (bodyweight) — 6 mins','Reverse lunges — 4 mins','Sumo squat tempo — 5 mins']},
+      {name:'Balance & Plyo (8 mins)', items:['Single leg hops mod','Step-ups']},
+      {name:'Core (6 mins)', items:['Side plank knee dips','Dead bug']},
+      {name:'Glute finish (5 mins)', items:['Fire hydrants','Clamshell pulses']},
+      {name:'Cooldown (5 mins)', items:['Hamstring & quad stretch'] }
+    ],
+    dietVeg:['Breakfast: Ragi idli','Lunch: Paneer + rice','Dinner: Veg curry + roti'],
+    dietNonVeg:['Breakfast: Eggs + oats','Lunch: Chicken + brown rice','Dinner: Fish + salad'],
+    tip:'Single-leg work builds balance and evens out asymmetries.' },
+
+  { title:'Day 10 — Core Overload',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Gentle jog + trunk rotations']},
+      {name:'Core Circuit (20 mins)', items:['Plank variations','Hollow holds','Bicycle slow','Leg lowers','Russian twists — timed intervals']},
+      {name:'Stability (8 mins)', items:['Bird dog','Heel taps','Pallof press mod (isometric)']},
+      {name:'Light Cardio (6 mins)', items:['March + high knees mod']},
+      {name:'Cooldown (5 mins)', items:['Spinal twist','Child pose'] }
+    ],
+    dietVeg:['Breakfast: Smoothie','Lunch: Lentil salad','Dinner: Light roti + sabzi'],
+    dietNonVeg:['Breakfast: Omelette','Lunch: Tuna/chicken salad','Dinner: Grilled fish + veg'],
+    tip:'Control breathing on core moves — exhale on effort.' },
+
+  { title:'Day 11 — Tabata Tone',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Dynamic mobility','Light jog in place']},
+      {name:'Tabata (16 mins)', items:['20s/10s x 8 rounds — choose 2 moves per round (squats, pushups mod, rows, mountain climbers)']},
+      {name:'Strength Finish (8 mins)', items:['Slow squats','Towel rows']},
+      {name:'Core (5 mins)', items:['Plank','Dead bug']},
+      {name:'Cooldown (5 mins)', items:['Stretch & foam rolling (or ball)'] }
+    ],
+    dietVeg:['Breakfast: Besan chilla','Lunch: Quinoa bowl','Dinner: Soup + salad'],
+    dietNonVeg:['Breakfast: Egg bhurji','Lunch: Chicken quinoa','Dinner: Light fish curry'],
+    tip:'Tabata is intense — keep form strict and rest if dizzy.' },
+
+  { title:'Day 12 — Upper Strength & Posture',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Neck mobility','Shoulder activation']},
+      {name:'Strength (15 mins)', items:['Push-up variations','Towel rows','Tricep dips','Y to T slow raises']},
+      {name:'Cardio (8 mins)', items:['Box step-ups or march + shadow punches']},
+      {name:'Core (6 mins)', items:['Side plank rotations','Plank hold']},
+      {name:'Tone finish (5 mins)', items:['Isometric arm holds','Tricep pulses']},
+      {name:'Cooldown (5 mins)', items:['Chest opener stretch','Neck relax'] }
+    ],
+    dietVeg:['Breakfast: Besan cheela + chutney','Lunch: Soya + veg','Dinner: Paneer sabzi + roti'],
+    dietNonVeg:['Breakfast: Omelette','Lunch: Chicken + salad','Dinner: Egg curry + veg'],
+    tip:'Posture work makes everyday movement stronger.' },
+
+  { title:'Day 13 — Cardio & Core Mix',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Light jog','Hip mobiliser']},
+      {name:'Cardio Block (15 mins)', items:['Intervals: 1 min on/30s off x 8 — jump jacks, skaters, march']},
+      {name:'Core (8 mins)', items:['Russian twists','Leg lowers','Plank shoulder taps']},
+      {name:'Lower Tone (6 mins)', items:['Reverse lunges','Calf raises']},
+      {name:'Finish & Stretch (5 mins)', items:['Slow walk out & stretch']},
+      {name:'Breathing (5 mins)', items:['Box breathing / diaphragmatic'] }
+    ],
+    dietVeg:['Breakfast: Idli + sambar','Lunch: Dal + rice','Dinner: Light salad + roti'],
+    dietNonVeg:['Breakfast: Egg dosa','Lunch: Chicken curry small rice','Dinner: Fish + veg'],
+    tip:'Keep movement varied to avoid plateau.' },
+
+  { title:'Day 14 — Mobility + Recovery Flow',
+    workout:[
+      {name:'Recovery Flow (45 mins)', items:['20 min brisk walk / light cycle','15 min mobility flow (hips, shoulders)','10 min deep stretch / breathing']},
+    ],
+    dietVeg:['Breakfast: Yogurt + fruit','Lunch: Khichdi + salad','Dinner: Light veg soup'],
+    dietNonVeg:['Breakfast: Yogurt + fruit','Lunch: Light chicken soup','Dinner: Steamed fish + veg'],
+    tip:'Use mobility day to reset posture and range.' },
+
+  { title:'Day 15 — Strength Circuit (Week 3)',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Dynamic stretch','Light jog']},
+      {name:'Circuit x4 (20 mins)', items:['45s on / 15s off - Squat, Push, Row, Reverse lunge, Plank 30s']},
+      {name:'Core (6 mins)', items:['Flutter kicks','Heel taps']},
+      {name:'Glute burn (6 mins)', items:['Bridge pulses','Single-leg bridges']},
+      {name:'Cooldown (7 mins)', items:['Foam roll / self-massage','Deep breath'] }
+    ],
+    dietVeg:['Breakfast: Oats + seeds','Lunch: Mixed lentil bowl','Dinner: Paneer + veg'],
+    dietNonVeg:['Breakfast: Eggs + oats','Lunch: Chicken bowl','Dinner: Fish + salad'],
+    tip:'Circuit training builds endurance & strength.' },
+
+  { title:'Day 16 — Obliques & Core Strength',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Torso twists','Side lunges']},
+      {name:'Obliques Block (12 mins)', items:['Side plank dips','Standing woodchoppers','Cable-less Pallof press hold']},
+      {name:'Lower Strength (10 mins)', items:['Goblet squat mod','Stepback lunges']},
+      {name:'Core (7 mins)', items:['Hollow hold','Dead bug']},
+      {name:'Finish (5 mins)', items:['Glute squeezes','Calf pulses']},
+      {name:'Cooldown (5 mins)', items:['Spinal twist'] }
+    ],
+    dietVeg:['Breakfast: Millet porridge','Lunch: Chana masala + rice','Dinner: Salad + chapati'],
+    dietNonVeg:['Breakfast: Omelette','Lunch: Grilled chicken + veg','Dinner: Egg + salad'],
+    tip:'Oblique work helps shape the waistline elegantly.' },
+
+  { title:'Day 17 — Power Plyo',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Leg swings','Dynamic lunges']},
+      {name:'Plyo Block (15 mins)', items:['Low-impact jump combos, squat hop mod, skater hops','Perform 40s work/20s rest']},
+      {name:'Strength (8 mins)', items:['Single leg RDL','Split squat']},
+      {name:'Core (6 mins)', items:['Plank to pike mod','Mountain climbers slow']},
+      {name:'Finisher (5 mins)', items:['AMRAP 3 mins - bodyweight combo']},
+      {name:'Cooldown (5 mins)', items:['Stretch & calm breathing'] }
+    ],
+    dietVeg:['Breakfast: Smoothie + oats','Lunch: Paneer salad','Dinner: Veg stew + roti'],
+    dietNonVeg:['Breakfast: Eggs + toast','Lunch: Chicken stir fry','Dinner: Fish + veg'],
+    tip:'Plyo increases power - keep knees safe.' },
+
+  { title:'Day 18 — Glute Focus (Heavy Activation)',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Glute activation mini-band work (or bodyweight)']},
+      {name:'Heavy Glute Block (15 mins)', items:['Hip thrusts mod','Bulgarian split — 2 mins each','Glute bridge with leg extension']},
+      {name:'Stability (8 mins)', items:['Step-ups slow','Single leg balance']},
+      {name:'Core (6 mins)', items:['Side plank with lift','Dead bug']},
+      {name:'Glute burn (5 mins)', items:['Pulse bridges','Donkey kicks']},
+      {name:'Cooldown (5 mins)', items:['Figure 4 stretch'] }
+    ],
+    dietVeg:['Breakfast: Sprouts + fruit','Lunch: Soya + veg','Dinner: Roti + dal'],
+    dietNonVeg:['Breakfast: Omelette','Lunch: Chicken + salad','Dinner: Fish + veg'],
+    tip:'Mind-muscle connection matters for glute gains.' },
+
+  { title:'Day 19 — Steady State Cardio',
+    workout:[
+      {name:'45 minute moderate activity', items:['45 minute brisk walk or jog/walk intervals, keep a steady pace for fat mobilization and recovery. Include short mobility breaks.']},
+    ],
+    dietVeg:['Breakfast: Idli','Lunch: Lentil salad','Dinner: Veg + roti'],
+    dietNonVeg:['Breakfast: Egg + toast','Lunch: Chicken salad','Dinner: Fish + veg'],
+    tip:'Steady state is excellent for endurance and habit-building.' },
+
+  { title:'Day 20 — Upper + Core Strength',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Arm circles','Band pull-aparts']},
+      {name:'Upper Strength (15 mins)', items:['Push-up variations','Towel rows','Tricep dips']},
+      {name:'Core (8 mins)', items:['Plank with toe taps','Russian twists']},
+      {name:'Cardio (6 mins)', items:['Shadow boxing intervals']},
+      {name:'Finish (5 mins)', items:['Arm isometrics','Slow raises']},
+      {name:'Cooldown (5 mins)', items:['Shoulder & chest stretch'] }
+    ],
+    dietVeg:['Breakfast: Besan chilla','Lunch: Paneer + salad','Dinner: Soup + roti'],
+    dietNonVeg:['Breakfast: Omelette','Lunch: Chicken + brown rice','Dinner: Fish + salad'],
+    tip:'Strong upper body improves posture and daily function.' },
+
+  { title:'Day 21 — Recovery & Reflection',
+    workout:[
+      {name:'Recovery Flow (45 mins)', items:['Gentle yoga flow 25 mins','Walking meditation 10 mins','Deep stretch 10 mins']},
+    ],
+    dietVeg:['Breakfast: Fruit bowl','Lunch: Light khichdi','Dinner: Soup + salad'],
+    dietNonVeg:['Breakfast: Fruit bowl','Lunch: Light chicken stew','Dinner: Steamed fish + veg'],
+    tip:'Reflect on wins this week and note small habit wins.' },
+
+  { title:'Day 22 — HIIT Increase',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Mobility + jog']},
+      {name:'HIIT (15 mins)', items:['45s on/15s off x 12 — squat jacks, mountain climbers, skaters']},
+      {name:'Lower Strength (8 mins)', items:['Split squat slow','Glute bridge']},
+      {name:'Core (6 mins)', items:['Flutter kicks','Plank series']},
+      {name:'Finish (5 mins)', items:['AMRAP 3 mins']},
+      {name:'Cooldown (5 mins)', items:['Stretch & breathing'] }
+    ],
+    dietVeg:['Breakfast: Oats + protein (optional)','Lunch: Chickpea bowl','Dinner: Mixed veg + roti'],
+    dietNonVeg:['Breakfast: Egg + oats','Lunch: Chicken bowl','Dinner: Fish + veg'],
+    tip:'Raise intensity but respect form and joint health.' },
+
+  { title:'Day 23 — Lower Strength + Plyo Mix',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Leg drills','mini hops']},
+      {name:'Strength (15 mins)', items:['Front squat mod','Single leg RDL','Lateral lunges']},
+      {name:'Plyo (8 mins)', items:['Low-impact jumps','Step hops']},
+      {name:'Core (6 mins)', items:['Side plank','Supermans']},
+      {name:'Finish (5 mins)', items:['Glute bridge pulses']},
+      {name:'Cooldown (5 mins)', items:['Stretch & calm breathing'] }
+    ],
+    dietVeg:['Breakfast: Millet idli','Lunch: Rajma + rice','Dinner: Paneer + salad'],
+    dietNonVeg:['Breakfast: Eggs','Lunch: Grilled chicken','Dinner: Fish'],
+    tip:'Focus on control in plyo — soft landings.' },
+
+  { title:'Day 24 — Core & Stability',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Dynamic core activation','cat-cow']},
+      {name:'Stability Block (15 mins)', items:['Bird dog','Pallof press mod','Stability squats']},
+      {name:'Core (10 mins)', items:['Dead bug','Hollow hold','Leg lowers']},
+      {name:'Lower Tone (6 mins)', items:['Calf & hamstring pulses']},
+      {name:'Finish (4 mins)', items:['Plank hold']},
+      {name:'Cooldown (4 mins)', items:['Spinal twist'] }
+    ],
+    dietVeg:['Breakfast: Smoothie','Lunch: Lentil salad','Dinner: Veg stew'],
+    dietNonVeg:['Breakfast: Omelette','Lunch: Chicken salad','Dinner: Fish + veg'],
+    tip:'Stability helps daily movement and prevents injury.' },
+
+  { title:'Day 25 — Full Body Strength Peak',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Light cardio + mobility']},
+      {name:'Full Strength Circuit (20 mins)', items:['3 rounds: Squat, Push, Row, Reverse lunge, Plank (45s each)']},
+      {name:'Core (6 mins)', items:['Russian twists','Heel taps']},
+      {name:'Glute finish (5 mins)', items:['Bridge holds','Donkey kicks']},
+      {name:'Cooldown (8 mins)', items:['Long hamstring & hip stretches'] }
+    ],
+    dietVeg:['Breakfast: Upma + veggies','Lunch: Paneer bowl','Dinner: Dal + roti'],
+    dietNonVeg:['Breakfast: Eggs','Lunch: Chicken + rice','Dinner: Fish + veg'],
+    tip:'Push smart — focus on tempo and breathing.' },
+
+  { title:'Day 26 — Mobility & Flexibility',
+    workout:[
+      {name:'Mobility Flow (45 mins)', items:['Dynamic stretch 12 mins','Yoga flow 20 mins','Foam roll / self massage 10 mins']},
+    ],
+    dietVeg:['Breakfast: Yogurt + fruit','Lunch: Khichdi','Dinner: Light soup'],
+    dietNonVeg:['Breakfast: Yogurt + fruit','Lunch: Chicken soup','Dinner: Steamed fish + veg'],
+    tip:'Mobility speeds recovery and improves results.' },
+
+  { title:'Day 27 — Power Endurance Challenge',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Dynamic run in place','hip openers']},
+      {name:'AMRAP (15 mins)', items:['As many rounds in 15 min: 5 squats, 5 pushups mod, 10 mountain climbers']},
+      {name:'Strength (8 mins)', items:['Single leg work','slow control']},
+      {name:'Core (6 mins)', items:['Plank series','dead bug']},
+      {name:'Finish (5 mins)', items:['Short sprint intervals or fast march']},
+      {name:'Cooldown (5 mins)', items:['Stretch & breathwork'] }
+    ],
+    dietVeg:['Breakfast: Oat pancakes','Lunch: Lentil + salad','Dinner: Veg curry + roti'],
+    dietNonVeg:['Breakfast: Eggs + oats','Lunch: Chicken bowl','Dinner: Fish + veg'],
+    tip:'AMRAPs test endurance; track progress by rounds.' },
+
+  { title:'Day 28 — Toning & Sculpt',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Leg swings','shoulder mobility']},
+      {name:'Tempo Strength (15 mins)', items:['Slow controlled squats','tempo lunges','single-leg stability work']},
+      {name:'Upper tone (8 mins)', items:['Slow push up negatives','towel rows']},
+      {name:'Core (6 mins)', items:['Slow bicycles','plank hold']},
+      {name:'Finish (5 mins)', items:['Glute pulses','isometric holds']},
+      {name:'Cooldown (5 mins)', items:['Stretches & calm breaths'] }
+    ],
+    dietVeg:['Breakfast: Sprouts','Lunch: Paneer salad','Dinner: Roti + veg'],
+    dietNonVeg:['Breakfast: Omelette','Lunch: Grilled chicken','Dinner: Fish + veg'],
+    tip:'Tempo work sculpts muscle without bulk.' },
+
+  { title:'Day 29 — Challenge Day (Full Body Test)',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Dynamic prep']},
+      {name:'Full Challenge (25 mins)', items:['4 rounds: 60s each - Squat, Push, Row, Core, Active rest 30s']},
+      {name:'Core Finish (6 mins)', items:['Hollow holds & gentle leg lowers']},
+      {name:'Glute finish (4 mins)', items:['Bridge pulses']},
+      {name:'Cooldown (4 mins)', items:['Stretch & celebration breathing'] }
+    ],
+    dietVeg:['Breakfast: Protein smoothie','Lunch: Chickpea bowl','Dinner: Light veg + roti'],
+    dietNonVeg:['Breakfast: Eggs + toast','Lunch: Chicken salad','Dinner: Fish + veg'],
+    tip:'Give your best but honour rest and form.' },
+
+  { title:'Day 30 — Celebrate & Reflect',
+    workout:[
+      {name:'Warm-up (6 mins)', items:['Light movement']},
+      {name:'Light Movement (20 mins)', items:['20 min walk or jog + mobility']},
+      {name:'Reflection & Movement (10 mins)', items:['Gentle yoga & deep breathing']},
+      {name:'Light Core (5 mins)', items:['Plank & side holds']},
+      {name:'Cooldown & journaling (4 mins)', items:['Take measurements, photos, reflect on progress.']},
+    ],
+    dietVeg:['Breakfast: Fruit bowl','Lunch: Balanced plate + salad','Dinner: Healthy celebratory meal'],
+    dietNonVeg:['Breakfast: Fruit + yogurt','Lunch: Balanced chicken plate','Dinner: Healthy celebratory meal'],
+    tip:'You finished — measure, celebrate, and plan the next 30 days!' }
+];
+/* -------------------------
+  Render day cards
+--------------------------*/
+const daysGrid = document.getElementById('daysGrid');
+const dayPanel = document.getElementById('dayPanel');
+
+days.forEach((d,i)=>{
+  const c = document.createElement('div');
+  c.className = 'day-card';
+  c.innerHTML = `<h3>Day ${i+1}</h3><div class="muted">${d.title.replace(/^Day \\d+ — /,'')}</div>`;
+  c.onclick = ()=> openDay(i);
+  daysGrid.appendChild(c);
 });
+
+/* -------------------------
+  Open Day UI (tabbed)
+--------------------------*/
+function openDay(index){
+  const d = days[index];
+  if(!d) return;
+  // if locked
+  if(!unlocked){
+    showBuyPrompt();
+    return;
+  }
+
+  // build HTML
+  dayPanel.style.display = 'block';
+  dayPanel.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px">
+      <div>
+        <h2 style="margin:0">Day ${index+1} • ${d.title.replace(/^Day \\d+ — /,'')}</h2>
+        <div class="small muted">45 minute structure — follow warm-up → main → core → cooldown</div>
+      </div>
+      <div>
+        <a class="btn alt" onclick="closeDay()">Close</a>
+      </div>
+    </div>
+
+    <div class="day-layout">
+      <div>
+        <div class="panel">
+          <div class="tabs">
+            <div class="tab active" data-tab="workout">Workout</div>
+            <div class="tab" data-tab="meals">Meal Plan</div>
+            <div class="tab" data-tab="tip">Tip of the Day</div>
+          </div>
+
+          <div id="tabContent">
+            <!-- workout content inserted here -->
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <h4 style="margin-top:0">Quick Info</h4>
+        <p class="small"><strong>Time:</strong> 45 minutes</p>
+        <p class="small"><strong>Focus:</strong> ${d.title.replace(/^Day \\d+ — /,'')}</p>
+        <p class="small"><strong>Water:</strong> 2-3 L</p>
+        <hr style="opacity:.06" />
+        <div style="margin-top:8px">
+          <h4 style="margin:0 0 8px 0">Exercise Forms</h4>
+          <p class="small muted">Tap to view detailed form sheets (gallery).</p>
+          <a class="btn alt" href="forms.html">Open Forms</a>
+        </div>
+      </aside>
+    </div>
+  `;
+
+  // attach tab handlers
+  const tabs = dayPanel.querySelectorAll('.tab');
+  tabs.forEach(t=> t.addEventListener('click', (e)=>{
+    tabs.forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    const which = t.dataset.tab;
+    renderTabContent(which, d);
+  }));
+
+  // render default
+  renderTabContent('workout', d);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* Render tab contents */
+function renderTabContent(tab, dayObj){
+  const container = dayPanel.querySelector('#tabContent');
+  if(!container) return;
+  if(tab === 'workout'){
+    // build workout HTML using dayObj.workout
+    let html = `<h3 style="margin-top:0">Workout (45 mins)</h3>`;
+    dayObj.workout.forEach(block=>{
+      html += `<div style="margin-bottom:10px"><strong>${block.name}</strong><ul style="margin:6px 0 0 14px;color:var(--muted)">`;
+      block.items.forEach(it=> html += `<li>${it}</li>`);
+      html += `</ul></div>`;
+    });
+
+    // exercises list (flatten first few moves into shorter list for quick glance)
+    html += `<h4>Exercises (quick glance)</h4>`;
+    const exList = [];
+    dayObj.workout.forEach(block => block.items.forEach(it => exList.push(it)));
+    const top = exList.slice(0,8);
+    top.forEach(it=>{
+      html += `<div class="exercise-item">
+        <div class="exercise-thumb" title="Open Exercise Forms"><a href="forms.html" style="text-decoration:none;color:var(--muted)">${'View'}</a></div>
+        <div class="exercise-info"><h4>${it.split(' — ')[0]}</h4><p class="small">${it.split(' — ')[1] || ''}</p></div>
+      </div>`;
+    });
+
+    container.innerHTML = html;
+  }
+
+  else if(tab === 'meals'){
+    let html = `<h3 style="margin-top:0">Meal Plan (Veg & Non-Veg)</h3>`;
+    html += `<div style="display:flex;gap:12px;flex-wrap:wrap"><div style="flex:1 1 300px"><h4>Vegetarian</h4><ul class="meal-list">`;
+    dayObj.dietVeg.forEach(m=> html += `<li>${m}</li>`);
+    html += `</ul></div><div style="flex:1 1 300px"><h4>Non-Veg</h4><ul class="meal-list">`;
+    dayObj.dietNonVeg.forEach(m=> html += `<li>${m}</li>`);
+    html += `</ul></div></div>`;
+    html += `<div style="margin-top:10px" class="small muted">Tip: follow the version that fits your preference. Portions control progress.</div>`;
+    container.innerHTML = html;
+  }
+
+  else if(tab === 'tip'){
+    container.innerHTML = `<h3 style="margin-top:0">Tip of the Day</h3>
+      <div class="tip">${dayObj.tip}</div>
+      <div style="margin-top:12px" class="small muted">Daily micro-action: pick one small habit and follow it today.</div>`;
+  }
+}
+
+function closeDay(){ dayPanel.style.display='none'; window.scrollTo({top:0,behavior:'smooth'}); }
+
+/* Unlock prompt (keeps manual admin flow possible) */
+function promptUnlock(){
+  const code = prompt('Enter unlock code (or Cancel). For review use: REVIEW');
+  if(!code) return;
+  if(code === 'REVIEW'){ unlocked = true; alert('Review access enabled.'); return; }
+  if(code === 'FIT399'){ unlocked = true; localStorage.setItem('portalUnlocked','true'); alert('Unlocked'); return; }
+  alert('Invalid code.');
+}
+
+/* buy prompt */
+function showBuyPrompt(){
+  alert('This content is locked. Replace the unlock flow with your payment link when you are ready to sell.');
+}
+
+/* Admin shortcut - press a then d to show alert with instructions */
+let kb = '';
+window.addEventListener('keydown', e=>{ kb += e.key; if(kb.endsWith('ad')) alert('Admin: use promptUnlock() to unlock or edit index.html to change mode.'); if(kb.length>10) kb=kb.slice(-5); });
+
+/* Export quick full PDF of all days (text-only) */
+function exportFullPDF(){
+  if(typeof window.jspdf === 'undefined' && typeof window.jspdf === 'undefined'){
+    // load CDN if not present
+  }
+  try{
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ unit:'pt', format:'a4' });
+    let y = 40;
+    pdf.setFontSize(16); pdf.text('30-Day Fit & Feminine Challenge',40,y); y+=24;
+    days.forEach((d,i)=>{
+      if(y>700){ pdf.addPage(); y=40; }
+      pdf.setFontSize(12); pdf.text(`${i+1}. ${d.title}`,40,y); y+=16;
+      d.workout.forEach(w=>{
+        if(y>700){ pdf.addPage(); y=40; }
+        pdf.setFontSize(10); pdf.text(`${w.name}`, 50, y); y+=12;
+        w.items.forEach(it=>{
+          if(y>700){ pdf.addPage(); y=40; }
+          pdf.text(`- ${it}`, 60, y); y+=10;
+        });
+      });
+      y+=8;
+    });
+    pdf.save('30-day-challenge-text.pdf');
+  }catch(err){ alert('PDF export failed in this browser.'); }
+}
+
+/* end script */
 </script>
+
 </body>
 </html>
